@@ -1,7 +1,7 @@
 import 'core-js/es6/symbol.js';
 import 'core-js/fn/symbol/iterator.js';
 // import ReactGA from 'react-ga';
-import { injectGlobal } from 'react-emotion/macro';
+import { injectGlobal } from 'react-emotion';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import 'moment/locale/zh-tw';
-import styled from 'react-emotion/macro';
+import styled from 'react-emotion';
 import CalendarDay from './CalendarDay';
 
 const Container = styled.div`

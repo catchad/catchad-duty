@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'react-emotion/macro';
+import styled from 'react-emotion';
 import Calendar from '../components/Calendar';
 
 const Container = styled.div`
