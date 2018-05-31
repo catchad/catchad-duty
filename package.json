@@ -124,5 +124,8 @@
       "jsx",
       "node"
     ]
+  },
+  "devDependencies": {
+    "babel-plugin-emotion": "^9.1.2"
   }
 }
