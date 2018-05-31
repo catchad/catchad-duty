@@ -36,6 +36,7 @@ injectGlobal`
   body {
     width: 100%;
     overflow-x: hidden;
+    background-color: #fbfbfb;
   }
   br {
     line-height: 0;    

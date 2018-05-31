@@ -9,6 +9,7 @@ const Container = styled.div`
   border-top: 1px solid #b3b3b3;
   border-bottom: 1px solid #b3b3b3;
   padding: 16px 0;
+  background-color: white;
 `;
 
 const TodayText = styled.p`

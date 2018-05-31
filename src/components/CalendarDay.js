@@ -3,7 +3,6 @@ import styled, { css } from 'react-emotion/macro';
 
 const Container = styled.div`
   position: relative;
-  background-color: white;
 `;
 
 const WeekText = styled.span`
