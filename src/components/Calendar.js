@@ -13,7 +13,7 @@ const Container = styled.div`
 `;
 
 const TodayText = styled.p`
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 300;
   text-align: center;
   margin: 0 0 10px 0;
