@@ -72,10 +72,6 @@ const DayData = [
 ];
 
 class Calendar extends Component {
-  componentDidMount() {
-    console.log(moment().day(4));
-  }
-
   render() {
     return (
       <Container>

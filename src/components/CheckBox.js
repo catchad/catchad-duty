@@ -12,6 +12,7 @@ const Container = styled.div`
   box-shadow: 0 6px 14px 0 rgba(0, 0, 0, 0.05);
   border-radius: 10000px;
   padding: 10px 20px;
+  background-color: white;
 `;
 
 const Text = styled.p`
