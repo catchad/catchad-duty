@@ -34,8 +34,9 @@
     }
   ],
 
-  "start_url": "./index.html",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#FA3155",
-  "background_color": "#FA3155"
+  "background_color": "#FA3155",
+  "gcm_sender_id": "103953800507"
 }
