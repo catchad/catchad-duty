@@ -13,9 +13,7 @@ const Button = styled.div`
 
 class Backend extends Component {
   handleClick = () => {
-    console.log(getRandomSchedule());
-    console.log(database);
-    database.ref(`/`).set(getRandomSchedule());
+    database.ref(`/schedule`).set(getRandomSchedule());
   };
   render() {
     return (

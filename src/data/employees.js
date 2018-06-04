@@ -32,7 +32,7 @@ const employees = [
   { name: '郭', group: Groups.design, imageLink: imageLink3 },
   { name: '維晉', group: Groups.programming, imageLink: imageLink4 },
   { name: '蔡貴翰', group: Groups.programming, imageLink: imageLink5 },
-  { name: '凱西尤尤（尤佳雯）', group: Groups.movie, imageLink: imageLink6 },
+  { name: '凱西尤尤', group: Groups.movie, imageLink: imageLink6 },
   { name: '張小綱', group: Groups.movie, imageLink: imageLink8 },
   { name: '張文瀚', group: Groups.programming, imageLink: imageLink9 },
   { name: 'Diane Lu', group: Groups.creative, imageLink: imageLink10 },
@@ -46,7 +46,7 @@ const employees = [
   },
   { name: '許小柔', imageLink: imageLink15, group: Groups.pm },
   { name: 'Elsa', imageLink: imageLink16, group: Groups.pm },
-  { name: 'JessinLin。潔', imageLink: imageLink18, group: Groups.design }
+  { name: 'JessinLin', imageLink: imageLink18, group: Groups.design }
 ];
 
 const employeesByGroup = groupBy(employees, 'group');

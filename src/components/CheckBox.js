@@ -13,6 +13,7 @@ const Container = styled.div`
   border-radius: 10000px;
   padding: 10px 20px;
   background-color: white;
+  cursor: pointer;
 `;
 
 const Text = styled.p`
