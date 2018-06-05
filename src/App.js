@@ -8,6 +8,7 @@ import { messaging } from './firebase';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SendTokenToServer from './SendTokenToServer';
+import { LoginContextProvider } from './context/LoginContext';
 
 const Container = styled.div`
   position: relative;
@@ -60,32 +61,34 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Container>
-          <ToastContainer />
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={() => {
-                return <Home />;
-              }}
-            />
-            <Route
-              exact
-              path="/login"
-              render={() => {
-                return <Login />;
-              }}
-            />
-            <Route
-              exact
-              path="/backend"
-              render={() => {
-                return <LoadableBackend />;
-              }}
-            />
-          </Switch>
-        </Container>
+        <LoginContextProvider>
+          <Container>
+            <ToastContainer />
+            <Switch>
+              <Route
+                exact
+                path="/"
+                render={() => {
+                  return <Home />;
+                }}
+              />
+              <Route
+                exact
+                path="/login"
+                render={() => {
+                  return <Login />;
+                }}
+              />
+              <Route
+                exact
+                path="/backend"
+                render={() => {
+                  return <LoadableBackend />;
+                }}
+              />
+            </Switch>
+          </Container>
+        </LoginContextProvider>
       </Router>
     );
   }

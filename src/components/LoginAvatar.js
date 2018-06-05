@@ -3,6 +3,7 @@ import styled from 'react-emotion';
 import employees from '../data/employees';
 import keyBy from 'lodash/keyBy';
 import { withRouter } from 'react-router-dom';
+import { LoginContext } from '../context/LoginContext';
 
 const employeesWithId = keyBy(employees, 'name');
 
@@ -63,16 +64,25 @@ class LoginAvatar extends Component {
   render() {
     const { name } = this.props;
     return (
-      <Container onClick={this.handleClick}>
-        <AspectRaioContainer>
-          <Image
-            style={{
-              backgroundImage: `url(${employeesWithId[name].imageLink})`
+      <LoginContext>
+        {({ handleUserChange }) => (
+          <Container
+            onClick={() => {
+              handleUserChange(name);
+              this.handleClick();
             }}
-          />
-        </AspectRaioContainer>
-        <NameText>{name}</NameText>
-      </Container>
+          >
+            <AspectRaioContainer>
+              <Image
+                style={{
+                  backgroundImage: `url(${employeesWithId[name].imageLink})`
+                }}
+              />
+            </AspectRaioContainer>
+            <NameText>{name}</NameText>
+          </Container>
+        )}
+      </LoginContext>
     );
   }
 }
