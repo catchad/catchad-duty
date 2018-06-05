@@ -6,6 +6,7 @@ import styled from 'react-emotion';
 import { messaging } from './firebase';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SendTokenToServer from './SendTokenToServer';
 
 const Container = styled.div`
   position: relative;
@@ -25,12 +26,12 @@ class App extends Component {
       .requestPermission()
       .then(function() {
         console.log('Notification permission granted.');
-        // TODO(developer): Retrieve an Instance ID token for use with FCM.
-        // ...
+
         return messaging.getToken();
       })
       .then(function(token) {
         console.log(token);
+        SendTokenToServer(token);
       })
       .catch(function(err) {
         console.log('Unable to get permission to notify.', err);
