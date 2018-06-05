@@ -5,7 +5,7 @@ import { injectGlobal } from 'react-emotion';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 
 // ReactGA.initialize('UA-118901514-2');
 // ReactGA.pageview('Landing');
@@ -55,4 +55,4 @@ if (module.hot) {
   });
 }
 
-registerServiceWorker();
+// registerServiceWorker();
