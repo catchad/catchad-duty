@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Home from './pages/Home';
+import Login from './pages/Login';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import styled from 'react-emotion';
@@ -67,6 +68,13 @@ class App extends Component {
               path="/"
               render={() => {
                 return <Home />;
+              }}
+            />
+            <Route
+              exact
+              path="/login"
+              render={() => {
+                return <Login />;
               }}
             />
             <Route
