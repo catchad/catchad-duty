@@ -26,7 +26,7 @@ class App extends Component {
       .requestPermission()
       .then(function() {
         console.log('Notification permission granted.');
-
+        console.log(messaging);
         return messaging.getToken();
       })
       .then(function(token) {
@@ -36,6 +36,18 @@ class App extends Component {
       .catch(function(err) {
         console.log('Unable to get permission to notify.', err);
       });
+    messaging.onTokenRefresh(function() {
+      messaging
+        .getToken()
+        .then(function(refreshedToken) {
+          console.log('Token refreshed.');
+          SendTokenToServer(refreshedToken);
+        })
+        .catch(function(err) {
+          console.log('Unable to retrieve refreshed token ', err);
+        });
+    });
+
     messaging.onMessage(function(payload) {
       console.log('Message received. ', payload);
       toast(payload.notification.body, {
