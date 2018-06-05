@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import styled from 'react-emotion';
 import { messaging } from './firebase';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Container = styled.div`
   position: relative;
@@ -35,6 +37,9 @@ class App extends Component {
       });
     messaging.onMessage(function(payload) {
       console.log('Message received. ', payload);
+      toast(payload.notification.body, {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
     });
   }
 
@@ -42,6 +47,7 @@ class App extends Component {
     return (
       <Router>
         <Container>
+          <ToastContainer />
           <Switch>
             <Route
               exact
