@@ -33,9 +33,8 @@ class App extends Component {
       .catch(function(err) {
         console.log('Unable to get permission to notify.', err);
       });
-
-    messaging.onMessage(payload => {
-      console.log('onMessage', payload);
+    messaging.onMessage(function(payload) {
+      console.log('Message received. ', payload);
     });
   }
 
