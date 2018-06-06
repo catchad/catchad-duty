@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'react-emotion';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { LoginContext } from '../context/LoginContext';
 
 const Container = styled.div`
@@ -49,7 +49,7 @@ class Header extends Component {
         {({ currentUser }) => (
           <Container>
             <CurrentUserText>
-              {currentUser !== null ? currentUser : '沒有人'}
+              {currentUser !== null ? currentUser : <Redirect to="/login" />}
             </CurrentUserText>
             <Text>貓取值日生</Text>
             <BackText onClick={this.handleBack}>不是你？</BackText>
