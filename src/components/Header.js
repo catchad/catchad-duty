@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'react-emotion';
-import { withRouter, Redirect } from 'react-router-dom';
-import { LoginContext } from '../context/LoginContext';
+import { withRouter } from 'react-router-dom';
 
 const Container = styled.div`
   position: relative;
@@ -44,18 +43,13 @@ class Header extends Component {
     history.push('/login');
   };
   render() {
+    const { currentUser } = this.props;
     return (
-      <LoginContext>
-        {({ currentUser }) => (
-          <Container>
-            <CurrentUserText>
-              {currentUser !== null ? currentUser : <Redirect to="/login" />}
-            </CurrentUserText>
-            <Text>貓取值日生</Text>
-            <BackText onClick={this.handleBack}>不是你？</BackText>
-          </Container>
-        )}
-      </LoginContext>
+      <Container>
+        <CurrentUserText>{currentUser}</CurrentUserText>
+        <Text>貓取值日生</Text>
+        <BackText onClick={this.handleBack}>不是你？</BackText>
+      </Container>
     );
   }
 }

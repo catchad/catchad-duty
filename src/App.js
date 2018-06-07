@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import styled from 'react-emotion';
 import { messaging } from './firebase';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import SendTokenToServer from './SendTokenToServer';
-import { LoginContextProvider } from './context/LoginContext';
+import { LoginContext } from './context/LoginContext';
+import registryFirebaseMessaging from './registryFirebaseMessaging';
+import Provider from './Provider';
 
 const Container = styled.div`
   position: relative;
@@ -24,31 +25,7 @@ const LoadableBackend = Loadable({
 
 class App extends Component {
   componentDidMount() {
-    messaging
-      .requestPermission()
-      .then(function() {
-        console.log('Notification permission granted.');
-        console.log(messaging);
-        return messaging.getToken();
-      })
-      .then(function(token) {
-        console.log(token);
-        SendTokenToServer(token);
-      })
-      .catch(function(err) {
-        console.log('Unable to get permission to notify.', err);
-      });
-    messaging.onTokenRefresh(function() {
-      messaging
-        .getToken()
-        .then(function(refreshedToken) {
-          console.log('Token refreshed.');
-          SendTokenToServer(refreshedToken);
-        })
-        .catch(function(err) {
-          console.log('Unable to retrieve refreshed token ', err);
-        });
-    });
+    registryFirebaseMessaging();
 
     messaging.onMessage(function(payload) {
       console.log('Message received. ', payload);
@@ -60,36 +37,44 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <LoginContextProvider>
-          <Container>
-            <ToastContainer />
-            <Switch>
-              <Route
-                exact
-                path="/"
-                render={() => {
-                  return <Home />;
-                }}
-              />
-              <Route
-                exact
-                path="/login"
-                render={() => {
-                  return <Login />;
-                }}
-              />
-              <Route
-                exact
-                path="/backend"
-                render={() => {
-                  return <LoadableBackend />;
-                }}
-              />
-            </Switch>
-          </Container>
-        </LoginContextProvider>
-      </Router>
+      <Provider>
+        <Container>
+          <ToastContainer />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => {
+                return (
+                  <LoginContext.Consumer>
+                    {({ currentUser }) =>
+                      currentUser === null ? (
+                        <Redirect to="/login" />
+                      ) : (
+                        <Home currentUser={currentUser} />
+                      )
+                    }
+                  </LoginContext.Consumer>
+                );
+              }}
+            />
+            <Route
+              exact
+              path="/login"
+              render={() => {
+                return <Login />;
+              }}
+            />
+            <Route
+              exact
+              path="/backend"
+              render={() => {
+                return <LoadableBackend />;
+              }}
+            />
+          </Switch>
+        </Container>
+      </Provider>
     );
   }
 }

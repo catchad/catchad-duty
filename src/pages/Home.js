@@ -11,10 +11,13 @@ const Container = styled.div`
 `;
 
 class Home extends Component {
+  componentDidMount() {}
+
   render() {
+    const { currentUser } = this.props;
     return (
       <Container>
-        <Header />
+        <Header currentUser={currentUser} />
         <Schedule />
         <Calendar />
         <DailyJob />
