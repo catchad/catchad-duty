@@ -99,8 +99,10 @@ class Backend extends Component {
       });
   };
   handleSendTopics = todayPerson => {
-    const index = findIndex(employees, { name: todayPerson.name });
-    this.postDataToTopic(index);
+    if (todayPerson.name) {
+      const index = findIndex(employees, { name: todayPerson.name });
+      this.postDataToTopic(index);
+    }
   };
   render() {
     return (

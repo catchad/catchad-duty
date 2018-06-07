@@ -14,8 +14,9 @@ const registryFirebaseMessaging = currentUser => {
     .then(function(token) {
       console.log(token);
       SendTokenToServer(token);
-      DeleteTokenToTopic(token);
-      SendTokenToTopic(token, currentUser);
+      DeleteTokenToTopic(token, () => {
+        SendTokenToTopic(token, currentUser);
+      });
     })
     .catch(function(err) {
       console.log('Unable to get permission to notify.', err);
@@ -26,8 +27,9 @@ const registryFirebaseMessaging = currentUser => {
       .then(function(refreshedToken) {
         console.log('Token refreshed.');
         SendTokenToServer(refreshedToken);
-        DeleteTokenToTopic(refreshedToken);
-        SendTokenToTopic(refreshedToken, currentUser);
+        DeleteTokenToTopic(refreshedToken, () => {
+          SendTokenToTopic(refreshedToken, currentUser);
+        });
       })
       .catch(function(err) {
         console.log('Unable to retrieve refreshed token ', err);
