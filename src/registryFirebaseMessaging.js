@@ -1,7 +1,9 @@
 import { messaging } from './firebase';
 import SendTokenToServer from './SendTokenToServer';
+import SendTokenToTopic from './SendTokenToTopic';
+import DeleteTokenToTopic from './DeleteTokenToTopic';
 
-const registryFirebaseMessaging = () => {
+const registryFirebaseMessaging = currentUser => {
   messaging
     .requestPermission()
     .then(function() {
@@ -12,6 +14,8 @@ const registryFirebaseMessaging = () => {
     .then(function(token) {
       console.log(token);
       SendTokenToServer(token);
+      DeleteTokenToTopic(token);
+      SendTokenToTopic(token, currentUser);
     })
     .catch(function(err) {
       console.log('Unable to get permission to notify.', err);
@@ -22,6 +26,8 @@ const registryFirebaseMessaging = () => {
       .then(function(refreshedToken) {
         console.log('Token refreshed.');
         SendTokenToServer(refreshedToken);
+        DeleteTokenToTopic(refreshedToken);
+        SendTokenToTopic(refreshedToken, currentUser);
       })
       .catch(function(err) {
         console.log('Unable to retrieve refreshed token ', err);

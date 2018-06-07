@@ -4,11 +4,8 @@ import Login from './pages/Login';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import styled from 'react-emotion';
-import { messaging } from './firebase';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { LoginContext } from './context/LoginContext';
-import registryFirebaseMessaging from './registryFirebaseMessaging';
 import Provider from './Provider';
 
 const Container = styled.div`
@@ -24,22 +21,10 @@ const LoadableBackend = Loadable({
 });
 
 class App extends Component {
-  componentDidMount() {
-    registryFirebaseMessaging();
-
-    messaging.onMessage(function(payload) {
-      console.log('Message received. ', payload);
-      toast(payload.notification.body, {
-        position: toast.POSITION.BOTTOM_CENTER
-      });
-    });
-  }
-
   render() {
     return (
       <Provider>
         <Container>
-          <ToastContainer />
           <Switch>
             <Route
               exact

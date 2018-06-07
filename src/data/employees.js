@@ -16,8 +16,6 @@ import imageLink16 from '../images/employees/16.jpg';
 import imageLink18 from '../images/employees/18.jpg';
 import groupBy from 'lodash/groupBy';
 
-console.log(encodeURIComponent('智永 ：)'));
-
 const Groups = {
   programming: 'programming',
   movie: 'movie',
