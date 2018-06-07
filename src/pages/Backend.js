@@ -7,6 +7,9 @@ import { ScheduleContext } from '../context/ScheduleContext';
 import get from 'lodash/get';
 import findIndex from 'lodash/findIndex';
 
+// const key =
+//   'AAAAT8R2EPY:APA91bGXeH2_9oIGqCHL1PA8QsjnMMCHLfENE-1AZBlzwuUMGd_ruo33bV9dwK-bBL_KnyhLIjZPF_lvObdRn0JG02xEKS5zYGe3uMo55HSL5kGaZlIhb3CfRj-7eLM_weWawKFLDK8U';
+
 const Container = styled.div`
   position: relative;
 `;
@@ -104,6 +107,7 @@ class Backend extends Component {
       this.postDataToTopic(index);
     }
   };
+  handleInfo = () => {};
   render() {
     return (
       <ScheduleContext.Consumer>
@@ -117,6 +121,7 @@ class Backend extends Component {
             >
               Send
             </Button>
+            <Button onClick={this.handleInfo}>Info</Button>
           </Container>
         )}
       </ScheduleContext.Consumer>

@@ -7,6 +7,8 @@ import styled from 'react-emotion';
 import 'react-toastify/dist/ReactToastify.css';
 import { LoginContext } from './context/LoginContext';
 import Provider from './Provider';
+import { messaging } from './firebase';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Container = styled.div`
   position: relative;
@@ -21,10 +23,21 @@ const LoadableBackend = Loadable({
 });
 
 class App extends Component {
+  componentDidMount() {
+    messaging.onMessage(function(payload) {
+      console.log('Message received. ', payload);
+      toast(payload.notification.body, {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+    });
+  }
+
   render() {
     return (
       <Provider>
         <Container>
+          <ToastContainer />
+
           <Switch>
             <Route
               exact
